@@ -4,11 +4,25 @@
 
 async function fetchIpos(){
     //we can integrate api using fetch method (built in js method). In reactjs axios(library) 
-    let response = await fetch("https://api.ipoalerts.in/ipos?status=open", {
+    let response = await fetch("https://jsonplaceholder.typicode.com/todos", {
         headers: {
-            "X-API-KEY": "f00ef8c75cd850f1e8f38c706599ae05e1db3cf52cf75092b83e69ef2ac7455d"
+            "X-API-KEY": "f00ef8c75cd850f1e8f38c706599ae05e1db3cf52cf75092b83e69ef2ac7455d",
+            "Content-Type": "application/json",
         },
     });
-    console.log(response);  
+    let data =await response.json();
+    console.log(data);
+    //console.log(response);
+    displayData(data);  
+}
+function displayData(todos){
+    todos.map((todo, index) => {
+        let divObj = document.createElement("div");
+        divObj.className = "title";
+        divObj.innerHTML = todo.title;
+        document.body.appendChild(divObj);
+    })
 }
 fetchIpos();
+
+//JSON --> JAVASCRIPT OBJECT NOTATION
